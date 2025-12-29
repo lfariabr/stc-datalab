@@ -85,11 +85,11 @@ ls -lh /var/opt/mssql/backup/StC_SchoolLab_Full_*.bak
 5. Verify completion in **Messages** tab
 
 ### 1.5 Backup Validation Checklist
-- [ ] Backup file created successfully (check file size > 0 bytes)
-- [ ] RESTORE VERIFYONLY completed without errors
-- [ ] Backup file stored in secure location with restricted access
-- [ ] Backup retention policy enforced (keep 30 days minimum)
-- [ ] Off-site backup copy created (cloud storage or external drive)
+- [X] Backup file created successfully (check file size > 0 bytes)
+- [X] RESTORE VERIFYONLY completed without errors
+- [X] Backup file stored in secure location with restricted access
+- [X] Backup retention policy enforced (keep 30 days minimum)
+- [X] Off-site backup copy created (cloud storage or external drive)
 
 ### 1.6 Backup/Restore Decision Tree
 
@@ -224,12 +224,12 @@ GO
 ```
 
 ### 2.3 Post-Restore Validation
-- [ ] All tables have expected row counts
-- [ ] Key reports execute without errors
-- [ ] Foreign key constraints are intact
-- [ ] Views and stored procedures are accessible
-- [ ] User permissions are correctly applied
-- [ ] Notify staff that system is back online
+- [X] All tables have expected row counts
+- [X] Key reports execute without errors
+- [X] Foreign key constraints are intact
+- [X] Views and stored procedures are accessible
+- [X] User permissions are correctly applied
+- [X] Notify staff that system is back online
 
 ---
 
