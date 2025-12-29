@@ -294,4 +294,89 @@ This project is designed with StC's actual environment in mind:
 - **Resource Constraints**: Database team currently has 2 people (L and R) handling work for 3
 - **Documentation Gaps**: Previous developers left complex queries and SSIS packages with minimal documentation
 
-> See the complete systems architecture diagram in `docs/mermaid.md`
+--- 
+
+## Architecture Diagram
+
+```mermaid
+graph LR
+    %% =========================
+    %% SOURCE SYSTEMS
+    %% =========================
+    subgraph Sources["Source Systems (Operational)"]
+        SEQTA["SEQTA<br/>(Attendance, Effort, Grades)"]
+        SYNERG["Synergetic<br/>(Student CRM)"]
+        CANVAS["Canvas<br/>(LMS)"]
+        OtherSys["~10 Other School Systems"]
+    end
+
+    %% =========================
+    %% INTEGRATION LAYER
+    %% =========================
+    subgraph ETL["Integration & ETL Layer"]
+        SSIS["SSIS Packages<br/>(Imports, Validation, Transforms)"]
+    end
+
+    %% =========================
+    %% CORE DATA LAYER
+    %% =========================
+    subgraph DataLayer["Core Data Layer (On-Prem)"]
+        DB[("Microsoft SQL Server<br/>(Operational DB)")]
+        DW[("Data Warehouse")]
+    end
+
+    %% =========================
+    %% ANALYTICS & REPORTING
+    %% =========================
+    subgraph Analytics["Analytics & Reporting"]
+        PBI["Power BI<br/>(Dashboards & Reports)"]
+    end
+
+    %% =========================
+    %% PRESENTATION LAYER
+    %% =========================
+    subgraph Presentation["Presentation & Access"]
+        SP["SharePoint<br/>(Staff / Parent Portal)"]
+        SB["Schoolbox<br/>(Future Cloud Portal)"]
+        Users(("Staff & Parents"))
+    end
+
+    %% =========================
+    %% DATA FLOWS
+    %% =========================
+    SEQTA -->|CSV Export| SSIS
+    CANVAS --> SSIS
+    OtherSys --> SSIS
+
+    SSIS -->|Raw + Validated Data| DB
+    SSIS -->|Aggregates & Rankings| DB
+
+    DB --> DW
+    SYNERG --> DW
+    OtherSys --> DW
+
+    DW --> PBI
+    DB --> PBI
+
+    PBI --> SP
+    SP --> Users
+
+    %% =========================
+    %% FUTURE STATE
+    %% =========================
+    SP -.->|Future Migration| SB
+    SB --> Users
+
+    %% =========================
+    %% STYLING
+    %% =========================
+    classDef onPrem fill:#f9f,stroke:#333,stroke-width:2px
+    classDef cloud fill:#bbf,stroke:#33f,stroke-width:2px
+    classDef source fill:#fbb,stroke:#933,stroke-width:2px
+    classDef future fill:#bfb,stroke:#3f3,stroke-width:2px
+
+    class DB,DW,SSIS,SP onPrem
+    class SB cloud
+    class SB future
+    class SEQTA,SYNERG,CANVAS,OtherSys source
+```
