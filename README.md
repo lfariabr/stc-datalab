@@ -8,15 +8,15 @@ This is structured as a 3-level assessment simulation `(Level 1 → Level 2 → 
 
 | Date | Focus | Deliverables | Status |
 |------|-------|-------------|----|
-| **Dec 20-21** | Setup & Schema | SQL Server Express + SSMS installation, DB creation, table structure | ✅ |
-| **Dec 22-23** | Backup & Restore | Full backup/restore procedures, documentation with screenshots | ✅ |
-| **Dec 24-25** | Data Generation | Realistic seed data with edge cases | ✅ |
-| **Dec 26-27** | Reporting Views | Student profiles, class rolls, attendance summaries | ✅ |
-| **Dec 28-29** | Stored Procedures | Parameter-based queries, optimization | ✅ |
-| **Dec 30-31** | Import/Export | CSV handling, staging tables, data validation | ✅ |
-| **Jan 1-2** | Runbook & Documentation | Operational procedures, troubleshooting guide | ✅ |
-| **Jan 3-4** | Demo Preparation | Presentation script, screenshots, talking points | ✅ |
-| **Jan 5** | Final Review | Validate all components, practice demo | ✅ |
+| Dec 20-21 | Setup & Schema | SQL Server Express + SSMS installation, DB creation, table structure | ✅ |
+| Dec 22-23 | Backup & Restore | Full backup/restore procedures, documentation with screenshots | ✅ |
+| Dec 24-25 | Data Generation | Realistic seed data with edge cases | ✅ |
+| Dec 26-27 | Reporting Views | Student profiles, class rolls, attendance summaries | ✅ |
+| Dec 28-29 | Stored Procedures | Parameter-based queries, optimization | ✅ |
+| Dec 30-31 | Import/Export | CSV handling, staging tables, data validation | ✅ |
+| Jan 01-02 | Runbook & Documentation | Operational procedures, troubleshooting guide | ✅ |
+| Jan 03-04 | Demo Preparation | Presentation script, screenshots, talking points | ✅ |
+| Jan 05 | Final Review | Validate all components, practice demo | ✅ |
 
 > [Complete changelog with 30+ commits](https://github.com/search?q=repo%3Alfariabr%2Fmasters-swe-ai++stc+OR+%28stc%29+OR+std+OR+%28std%29&type=commits&s=committer-date&o=desc)
 
@@ -24,7 +24,7 @@ This is structured as a 3-level assessment simulation `(Level 1 → Level 2 → 
 
 ## StC School Data Lab (Operational Simulation)
 
-> Goal: Demonstrate I can maintain SQL Server data systems, run reporting, handle imports, and operate safely (backup/restore).
+> Goal: Demonstrate SQL Server data systems maintenance capabilities, reporting, data integration, and safe operations.
 
 ### Context from StC's Environment
 
@@ -45,7 +45,7 @@ This project simulates key aspects of StC's actual data environment:
 - **Resource Constraints**: Team of 2 handling workload meant for 3 people
 - **System Migration**: Upcoming SharePoint to School Box transition
 
-Repo / Folder Structure (what you’ll build)
+Repo / Folder Structure
 ```bash
 stc/
   README.md
@@ -94,15 +94,15 @@ stc/
 ## LEVEL 1 — Operator Fundamentals Assessment
 
 > Outcome: "Know the basics. Won't break production."
-- 📦 [Change history](https://github.com/lfariabr/masters-swe-ai/issues/91)
+- [View change history](https://github.com/lfariabr/masters-swe-ai/issues/91)
 
-### Tasks
-1. ✅ Install & connect
+### 📝 Tasks
+1. Install & connect
 -  SQL Server Express + SSMS (matching StC's on-premise setup)
 -  Create DB: StC_SchoolLab
 -  Configure basic security (matching school's confidentiality requirements)
 
-2. ✅ Create schema (core tables)
+2. Create schema (core tables)
 - Students (with privacy-sensitive fields like in Synergetic)
 - Staff (with role-based attributes)
 - Subjects (matching school curriculum structure)
@@ -110,22 +110,22 @@ stc/
 - Enrollments (student-class relationships)
 - Attendance (simple tracking like SEQTA)
 
-3. ✅ Basic SQL competence
+3. Basic SQL competence
 - SELECT + WHERE + ORDER BY (for basic student/class queries)
 - JOINS (especially LEFT JOIN for preserving all student records)
 - GROUP BY aggregates (COUNT/SUM for attendance reporting)
 - Basic indexing strategy (for performance)
 
-4. ✅ Backup & restore
+4. Backup & restore
 - Full backup (both GUI and T-SQL methods)
 - Restore to a new DB name: StC_SchoolLab_RESTORE
 - Document recovery point objectives
 
-### Deliverables
-- ✅ sql/00_create_db.sql, sql/01_schema.sql
-- ✅ docs/Lvl1Task1.X.md (step-by-step setup and execution + screenshots)
+### 📦 Deliverables
+- sql/00_create_db.sql, sql/01_schema.sql
+- docs/Lvl1Task1.X.md (step-by-step setup and execution + screenshots)
 
-### Checkpoint
+### ✅ Checkpoint
 1. "What is a database vs schema vs table?"
 - **R:** Database: the container for all data and objects for an application. 
 - Schema: a logical namespace used to organise objects and manage permissions. 
@@ -159,37 +159,37 @@ Examples:
 ## LEVEL 2 — Reporting & Data Integration Assessment
 
 > Outcome: "Can generate real reports and move data between systems."
-- 📦 [Change history](https://github.com/lfariabr/masters-swe-ai/issues/92)
+- [View change history](https://github.com/lfariabr/masters-swe-ai/issues/92)
 
-### Tasks
-1. ✅ Seed realistic data
+### 📝 Tasks
+1. Seed realistic data
 - 200 students, 20 staff, 30 classes, 500 enrollments (matching StC's scale)
 - Include some NULLs and edge cases (missing phone, withdrawn student, international students)
 - Add data quality issues that would need cleaning (simulating real-world scenarios)
 
-2. ✅ Create reporting views (similar to what feeds Power BI at StC's)
+2. Create reporting views (similar to what feeds Power BI at StC's)
 - vw_StudentProfile (comprehensive student data for staff access)
 - vw_ClassRoll (attendance tracking for teachers)
 - vw_AttendanceSummary (aggregated metrics for leadership)
 - vw_AcademicPerformance (simulating the effort/grades calculations)
 
-3. ✅ Stored procedures (addressing specific school needs)
+3. Stored procedures (addressing specific school needs)
 - sp_GetStudentProfile(@StudentId) (detailed student lookup)
 - sp_EnrollmentSummaryByYear(@YearLevel) (class distribution reports)
 - sp_AttendanceByDate(@Date) (daily attendance tracking)
 - sp_GetTableDataExport(@TableName) (for system integration)
 
-4. ✅ Import/export simulation (mimicking SEQTA integration)
+4. Import/export simulation (mimicking SEQTA integration)
 - Create data/*.csv (formatted like actual school exports)
 - Import into staging tables (e.g., Staging_Students)
 - Validate row counts, deduplicate, then merge into real tables
 - Document error handling for failed imports
 
-### Deliverables
-- ✅ sql/02_seed_data.sql, sql/03_views.sql, sql/04_stored_procedures.sql
-- ✅ docs/Lvl2Task2.X.md (step-by-step execution + screenshots)
+### 📦 Deliverables
+- sql/02_seed_data.sql, sql/03_views.sql, sql/04_stored_procedures.sql
+- docs/Lvl2Task2.X.md (step-by-step execution + screenshots)
 
-### Checkpoint
+### ✅ Checkpoint
 1. "How I validate imports before trusting reports" (critical for SEQTA data)
 - **R:** I never import CSVs straight into production tables. I land them in staging first, then validate before merge:
   - Row counts (imported vs valid vs invalid) tracked in `Import_Log`
@@ -222,10 +222,10 @@ Examples:
 ## LEVEL 3 — Production Mindset Assessment
 
 > Outcome: "Safe, documents well, and supports staff."
-- 📦 [Change history](https://github.com/lfariabr/masters-swe-ai/issues/93)
+- [View change history](https://github.com/lfariabr/masters-swe-ai/issues/93)
 
-### Tasks
-1. ✅ Operational Runbook
+### 📝 Tasks
+1. Operational Runbook
 Write `06_runbook.md` like an internal StC ICT doc:
 - How to run backups (both GUI and T-SQL methods)
 - How to restore in an emergency (with RPO/RTO considerations)
@@ -234,7 +234,7 @@ Write `06_runbook.md` like an internal StC ICT doc:
 - Permissions principles (least privilege, child data protection, staff access levels)
 - System integration monitoring (SEQTA imports, data warehouse feeds)
 
-2. ✅ Troubleshooting scenarios
+2. Troubleshooting scenarios
 Document how you'd handle real StC scenarios:
 - Report numbers don't match (e.g., attendance discrepancies between systems)
 - Import failed halfway (e.g., SEQTA CSV import failure)
@@ -242,7 +242,7 @@ Document how you'd handle real StC scenarios:
 - Performance issue on a report query (query optimization techniques)
 - Missing data in Power BI reports (tracing data lineage)
 
-3. ✅ Training material (for non-technical staff)
+3. Training material (for non-technical staff)
 Write a simple one-pager tailored to teachers and administrators:
 - "How to request a report" (process and expectations)
 - "What details to include" (clear requirements template)
@@ -250,7 +250,7 @@ Write a simple one-pager tailored to teachers and administrators:
 - "What we can/can't do (privacy/confidentiality)" (child safety compliance)
 - "When to expect results" (SLAs and priorities)
 
-4. ✅ Presentation script
+4. Presentation script
 Build docs/07_demo_script.md with StC context:
 - 2-minute overview of the solution architecture
 - 3 reports you'll demo (student profiles, attendance, academic performance)
@@ -259,12 +259,12 @@ Build docs/07_demo_script.md with StC context:
 - "How I work with staff" (collaboration approach)
 - Migration readiness (SharePoint to School Box considerations)
 
-### Deliverables
-- ✅ docs/06_runbook.md (comprehensive operations guide)
-- ✅ docs/07_demo_script.md (interview presentation)
-- ✅ 3 screenshots showing outputs in SSMS (report results, backup history, data validation)
+### 📦 Deliverables
+- docs/06_runbook.md (comprehensive operations guide)
+- docs/07_demo_script.md (interview presentation)
+- 3 screenshots showing outputs in SSMS (report results, backup history, data validation)
 
-### Checkpoint
+### ✅ Checkpoint
 1. "Always confirm backups and restore capability before changes."
 2. "Document assumptions so reports are reproducible."
 3. "In a school environment, confidentiality and access control are non-negotiable."
