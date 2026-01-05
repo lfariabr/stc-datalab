@@ -79,3 +79,14 @@ ORDER BY c.class_name;
 3. **Effort vs. Outcomes Insight**
 Using `vw_AcademicPerformance`, find students whose effort rating is `Outstanding` but whose academic standing is `At Risk` or `Failing`. Return student name, class, attendance rate %, effort rating, academic standing.
 Goal: Practice filtering a view that already encapsulates grade mapping and attendance-derived effort metrics.
+```sql
+SELECT
+    student_name,
+    class_name,
+    attendance_rate_percent,
+    effort_rating,
+    academic_standing
+FROM dbo.vw_AcademicPerformance
+WHERE effort_rating = 'Outstanding'
+AND academic_standing IN ('At Risk', 'Failing');
+```
