@@ -20,13 +20,14 @@ docker --version
 Pull and run the official Microsoft SQL Server 2022 image configured for Express edition:
 
 ```bash
-docker run -e "ACCEPT_EULA=Y" \
-           -e "MSSQL_SA_PASSWORD=StC_SchoolLab2025!" \
-           -e "MSSQL_PID=Express" \
-           -p 1433:1433 \
-           --name sqlserver \
-           --hostname sqlserver \
-           -d mcr.microsoft.com/mssql/server:2022-latest
+docker run \
+  -e 'ACCEPT_EULA=Y' \
+  -e 'MSSQL_SA_PASSWORD=StC_SchoolLab2025!' \
+  -e 'MSSQL_PID=Express' \
+  -p 1433:1433 \
+  --name sqlserver \
+  --hostname sqlserver \
+  -d mcr.microsoft.com/mssql/server:2022-latest
 ```
 
 **Parameters explained:**

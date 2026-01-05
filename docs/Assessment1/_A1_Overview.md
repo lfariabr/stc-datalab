@@ -18,7 +18,8 @@ Schools like StC run SQL Server on-premise. So knowing how to set up and connect
 
 ### **Key Commands I've Run:**
 ```bash
-# Start SQL Server in Docker
+# Codespaces
+# Start SQL Server in Docker 
 docker run -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=StC_SchoolLab2025!" -e "MSSQL_PID=Express" -p 1433:1433 --name sqlserver --hostname sqlserver -d mcr.microsoft.com/mssql/server:2022-latest
 
 # Test connection
@@ -26,6 +27,25 @@ docker run -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=StC_SchoolLab2025!" -e "MSSQ
 
 # Create database and user
 /opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P 'StC_SchoolLab2025!' -No -i sql/00_create_db.sql
+
+# Macbook
+# Start SQL Server in Docker
+docker run \
+  -e 'ACCEPT_EULA=Y' \
+  -e 'MSSQL_SA_PASSWORD=StC_SchoolLab2025!' \
+  -e 'MSSQL_PID=Express' \
+  -p 1433:1433 \
+  --name sqlserver \
+  --hostname sqlserver \
+  -d mcr.microsoft.com/mssql/server:2022-latest
+
+# Install sqlcmd on Mac & update
+brew tap microsoft/mssql-release https://github.com/microsoft/homebrew-mssql-releasebrew update           
+HOMEBREW_NO_AUTO_UPDATE=1 brew install sqlcmd
+
+# Create database and user
+/opt/homebrew/bin/sqlcmd -S localhost -U sa -P 'StC_SchoolLab2025!' -C -Q "CREATE DATABASE StC_SchoolLab;"
+
 ```
 
 ### **What I've Learned:**
